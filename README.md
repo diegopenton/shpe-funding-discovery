@@ -126,6 +126,14 @@ The collector attempts to retain:
 It never guesses email addresses. `info@domain` is not created unless that exact address is found publicly.
 
 
+
+## Recommended hosting
+
+This repository is designed to be deployed with **Streamlit Community Cloud**.
+
+GitHub stores the code and cached data; Streamlit runs the Python application and provides the public web URL.
+See [`DEPLOY_STREAMLIT.md`](DEPLOY_STREAMLIT.md) for the exact deployment steps.
+
 ## Put the dashboard on a public link
 
 The easiest deployment path is **Streamlit Community Cloud** after this repository is public on GitHub.
