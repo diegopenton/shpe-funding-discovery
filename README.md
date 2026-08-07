@@ -124,3 +124,30 @@ The collector attempts to retain:
 - public contact page, when no email is available
 
 It never guesses email addresses. `info@domain` is not created unless that exact address is found publicly.
+
+
+## Put the dashboard on a public link
+
+The easiest deployment path is **Streamlit Community Cloud** after this repository is public on GitHub.
+
+1. Push this repository to GitHub.
+2. Sign in to Streamlit Community Cloud with GitHub.
+3. Choose **Create app** / **Deploy an app**.
+4. Select this repository.
+5. Branch: `main`
+6. Main file path: `app.py`
+7. Deploy.
+
+The hosted URL will look similar to:
+
+```text
+https://your-app-name.streamlit.app
+```
+
+The dashboard uses the committed cache, so visitors do **not** need to run the Chamber scraper.
+Run `refresh_chamber_data.py` locally when you want to update the source data, review the changes, then commit the refreshed cache.
+
+### Important deployment design
+
+Do not scrape Chamber sites on every web-page visit. The public app reads the cached dataset from GitHub.
+This keeps the demonstration fast, avoids repeatedly hitting source sites, and makes the hosted version stable.

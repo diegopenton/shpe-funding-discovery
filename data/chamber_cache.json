@@ -8,7 +8,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Greater Auburndale Chamber of Commerce",
-      "profile_url": "https://www.myauburndalechamber.com/membership-directory"
+      "profile_url": "https://www.myauburndalechamber.com/membership-directory",
+      "lat": 28.021,
+      "lon": -81.732,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "A-C-T Environmental & Infrastructure, Inc.",
@@ -18,7 +21,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Lakeland Chamber of Commerce",
-      "profile_url": "https://web.lakelandchamber.com/Engineers?ysort=true"
+      "profile_url": "https://web.lakelandchamber.com/Engineers?ysort=true",
+      "lat": 27.895,
+      "lon": -81.842,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Atlas Project Consultants LLC",
@@ -28,7 +34,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Lakeland Chamber of Commerce",
-      "profile_url": "https://web.lakelandchamber.com/Engineers?ysort=true"
+      "profile_url": "https://web.lakelandchamber.com/Engineers?ysort=true",
+      "lat": 28.044,
+      "lon": -81.954,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "DSM-Firmenich",
@@ -38,7 +47,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Lakeland Chamber of Commerce",
-      "profile_url": "https://web.lakelandchamber.com/Manufacturing-Processing?ysort=true"
+      "profile_url": "https://web.lakelandchamber.com/Manufacturing-Processing?ysort=true",
+      "lat": 27.982,
+      "lon": -82.04,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "ITW Professional Automotive Products",
@@ -48,7 +60,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Lakeland Chamber of Commerce",
-      "profile_url": "https://web.lakelandchamber.com/Manufacturing-Processing?ysort=true"
+      "profile_url": "https://web.lakelandchamber.com/Manufacturing-Processing?ysort=true",
+      "lat": 28.002,
+      "lon": -81.94,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "S & B Metal Products, Inc.",
@@ -58,7 +73,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Lakeland Chamber of Commerce",
-      "profile_url": "https://web.lakelandchamber.com/Metals/Manufacturers-Fabricators?ysort=true"
+      "profile_url": "https://web.lakelandchamber.com/Metals/Manufacturers-Fabricators?ysort=true",
+      "lat": 27.974,
+      "lon": -82.043,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Valiant Products, Inc.",
@@ -68,7 +86,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Lakeland Chamber of Commerce",
-      "profile_url": "https://web.lakelandchamber.com/Metals/Manufacturers-Fabricators?ysort=true"
+      "profile_url": "https://web.lakelandchamber.com/Metals/Manufacturers-Fabricators?ysort=true",
+      "lat": 28.056,
+      "lon": -81.987,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Assure Infusions, Inc.",
@@ -78,7 +99,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Greater Bartow Chamber of Commerce",
-      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/a"
+      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/a",
+      "lat": 27.902,
+      "lon": -81.841,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Arise Construction, LLC",
@@ -88,7 +112,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Greater Bartow Chamber of Commerce",
-      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/a"
+      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/a",
+      "lat": 27.894,
+      "lon": -81.833,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Central Florida Development Council, Inc.",
@@ -98,7 +125,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Greater Bartow Chamber of Commerce",
-      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/c"
+      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/c",
+      "lat": 28.03,
+      "lon": -81.931,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "ConnectED Polk",
@@ -108,7 +138,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Greater Bartow Chamber of Commerce | Lakeland Chamber of Commerce",
-      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/c"
+      "profile_url": "https://mychamber.bartowchamber.com/list/searchalpha/c",
+      "lat": 28.044,
+      "lon": -81.954,
+      "coordinate_status": "demo geocoded from listed business address"
     }
   ],
   "Dartmouth College": [
@@ -120,7 +153,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c",
+      "lat": 43.7,
+      "lon": -72.289,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Carpet Mill USA",
@@ -130,7 +166,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c",
+      "lat": 43.643,
+      "lon": -72.25,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "CR Control Systems",
@@ -140,7 +179,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c",
+      "lat": 43.642,
+      "lon": -72.25,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Creare",
@@ -150,7 +192,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/members/searchalpha/c",
+      "lat": 43.712,
+      "lon": -72.259,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Banwell Architects",
@@ -160,7 +205,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/b"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/b",
+      "lat": 43.642,
+      "lon": -72.251,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Granite Air Center",
@@ -170,7 +218,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/g"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/g",
+      "lat": 43.626,
+      "lon": -72.305,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "GEOKON",
@@ -180,7 +231,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/g"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/g",
+      "lat": 43.642,
+      "lon": -72.253,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Hanover Eyecare",
@@ -190,7 +244,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/h"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/h",
+      "lat": 43.715,
+      "lon": -72.286,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Ledyard National Bank",
@@ -200,7 +257,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l",
+      "lat": 43.702,
+      "lon": -72.289,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Lebanon Municipal Airport",
@@ -210,7 +270,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l",
+      "lat": 43.626,
+      "lon": -72.304,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Simple Energy",
@@ -220,7 +283,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/s"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/s",
+      "lat": 43.65,
+      "lon": -72.315,
+      "coordinate_status": "demo geocoded from listed business address"
     },
     {
       "company": "Vital Communities",
@@ -230,7 +296,10 @@
       "contact_email": "",
       "contact_page": "",
       "discovery_source": "Upper Valley Business Alliance",
-      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/v"
+      "profile_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/v",
+      "lat": 43.649,
+      "lon": -72.322,
+      "coordinate_status": "demo geocoded from listed business address"
     }
   ]
 }

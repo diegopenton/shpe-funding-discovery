@@ -60,6 +60,30 @@ def _emails(soup):
             found.add(m.lower())
     return sorted(found)
 
+
+def _geocode_address(session, address, delay=1.05):
+    """Geocode a public business address with Nominatim.
+    Rate-limited and cached by the caller. Returns (lat, lon) or (None, None).
+    """
+    if not address:
+        return None, None
+    try:
+        time.sleep(delay)
+        r=session.get(
+            "https://nominatim.openstreetmap.org/search",
+            params={"q":address,"format":"jsonv2","limit":1,"countrycodes":"us"},
+            timeout=20,
+            headers={"User-Agent":UA}
+        )
+        if r.ok:
+            data=r.json()
+            if data:
+                return float(data[0]["lat"]), float(data[0]["lon"])
+    except Exception:
+        pass
+    return None, None
+
+
 def _contact_page(session, website):
     if not website: return ""
     try:
@@ -198,6 +222,9 @@ def collect_source(source, limit=100, request_delay=.35):
             rec["website"]=site or rec["website"]
             rec["contact_page"]=contact
             rec["contact_email"]=(prof_emails+site_emails)[0] if (prof_emails+site_emails) else ""
+            lat,lon=_geocode_address(session,rec.get("address",""))
+            rec["lat"]=lat
+            rec["lon"]=lon
             records.append(rec)
             if len(records)>=limit: break
         time.sleep(request_delay)
