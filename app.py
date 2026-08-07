@@ -110,8 +110,8 @@ if page == "Discovery":
             st.markdown(f"""<div class="card"><div class="name">{selected['company']}</div>
             <div class="muted">{selected['industry']} · {selected['city']} · {selected['distance']} miles from {center_name}</div>
             <span class="badge">{selected['local_presence'].replace('_',' ').title()}</span>
-            <span class="badge">{selected['capacity_tier'].title()} capacity tier</span>
-            <p style="margin-top:14px">{selected['summary']}</p></div>""",unsafe_allow_html=True)
+            <span class="badge">{selected['capacity_tier'].title()} capacity tier</span>\n            <span class="badge">{selected.get('discovery_source', 'Direct research')}</span>
+            <p style="margin-top:14px">{selected['summary']}</p>\n            <div class="small"><b>Evidence status:</b> {selected.get('evidence_status', 'Company sources enriched')}</div></div>""",unsafe_allow_html=True)
         with top2:
             label="High priority" if selected["score"]>=80 else "Promising" if selected["score"]>=65 else "Needs review"
             st.markdown(f"""<div class="card" style="text-align:center">

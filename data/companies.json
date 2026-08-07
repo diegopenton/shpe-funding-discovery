@@ -268,5 +268,499 @@
         "date": ""
       }
     ]
+  },
+  {
+    "company": "Pepperidge Farm, Incorporated",
+    "industry": "Advanced Manufacturing",
+    "city": "Lakeland, FL",
+    "lat": 28.086,
+    "lon": -81.958,
+    "local_presence": "major_facility",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed manufacturer. The Chamber describes the Lakeland facility as producing bakery and cracker products for distribution in the Southeastern United States. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Pepperidge Farm, Incorporated",
+        "url": "https://web.lakelandchamber.com/Manufacturers/Pepperidge-Farm%2C-Incorporated-282",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Mitutoyo America Corporation",
+    "industry": "Advanced Manufacturing",
+    "city": "Lakeland, FL",
+    "lat": 28.002,
+    "lon": -82.041,
+    "local_presence": "regional_office",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed precision measurement and metrology company. The Chamber describes Mitutoyo as a global leader in high-accuracy measurement technology. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Mitutoyo America Corporation",
+        "url": "https://web.lakelandchamber.com/Manufacturers/Mitutoyo-America-Corporation-5844",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "JBT Marel",
+    "industry": "Advanced Manufacturing",
+    "city": "Lakeland, FL",
+    "lat": 28.048,
+    "lon": -81.915,
+    "local_presence": "major_facility",
+    "capacity_tier": "enterprise",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed technology and manufacturing company serving the food and beverage industry. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 JBT Marel",
+        "url": "https://web.lakelandchamber.com/Manufacturers/JBT-Marel-84",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Harrell's, LLC",
+    "industry": "Advanced Manufacturing",
+    "city": "Lakeland, FL",
+    "lat": 28.031,
+    "lon": -82.018,
+    "local_presence": "headquarters",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Long-time Lakeland Chamber member and employee-owned supplier of fertilizers, plant-protection products, and specialty solutions. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Harrell's, LLC",
+        "url": "https://web.lakelandchamber.com/Manufacturers/Harrell%27s%2C-LLC-5764",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Mission Foods",
+    "industry": "Food & Consumer",
+    "city": "Lakeland, FL",
+    "lat": 28.085,
+    "lon": -81.962,
+    "local_presence": "major_facility",
+    "capacity_tier": "enterprise",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed food manufacturer with a Lakeland facility. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Mission Foods",
+        "url": "https://web.lakelandchamber.com/Manufacturers/Mission-Foods-1967",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Keymark Corporation of Florida",
+    "industry": "Advanced Manufacturing",
+    "city": "Lakeland, FL",
+    "lat": 28.106,
+    "lon": -82.012,
+    "local_presence": "major_facility",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed aluminum extrusion and finishing manufacturer. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Keymark Corporation of Florida",
+        "url": "https://web.lakelandchamber.com/Manufacturers-Aluminum-Extrusions-wElectrostatic-Painting/Keymark-Corporation-of-Florida-777",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Perpetual Technology Solutions",
+    "industry": "Technology",
+    "city": "Lakeland, FL",
+    "lat": 27.999,
+    "lon": -82.026,
+    "local_presence": "local_branch",
+    "capacity_tier": "small",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed IT company providing computer sales, software consulting, custom applications, managed services, and virtualization. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Perpetual Technology Solutions",
+        "url": "https://web.lakelandchamber.com/Computers/Perpetual-Technology-Solutions-50",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Integrated Metal Products, Inc.",
+    "industry": "Advanced Manufacturing",
+    "city": "Lakeland, FL",
+    "lat": 28.037,
+    "lon": -81.982,
+    "local_presence": "major_facility",
+    "capacity_tier": "medium",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Chamber-listed metal manufacturer and fabricator. Sponsor-program enrichment is pending.",
+    "discovery_source": "Lakeland Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Lakeland Chamber \u2014 Integrated Metal Products, Inc.",
+        "url": "https://web.lakelandchamber.com/Metals/Manufacturers-Fabricators",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Airtec Sprayers, Inc.",
+    "industry": "Advanced Manufacturing",
+    "city": "Winter Haven, FL",
+    "lat": 28.071,
+    "lon": -81.72,
+    "local_presence": "headquarters",
+    "capacity_tier": "medium",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Greater Winter Haven Chamber-listed manufacturer of advanced agricultural spraying systems. Sponsor-program enrichment is pending.",
+    "discovery_source": "Greater Winter Haven Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Winter Haven Chamber \u2014 Airtec Sprayers, Inc.",
+        "url": "https://web.winterhavenchamber.com/Manufacturers-Processors/Airtec-Sprayers%2C-Inc-5063",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Polyglass USA, Inc.",
+    "industry": "Advanced Manufacturing",
+    "city": "Winter Haven, FL",
+    "lat": 28.06,
+    "lon": -81.716,
+    "local_presence": "major_facility",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Greater Winter Haven Chamber-listed manufacturer of roofing and waterproofing membranes and coatings. Sponsor-program enrichment is pending.",
+    "discovery_source": "Greater Winter Haven Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Winter Haven Chamber \u2014 Polyglass USA, Inc.",
+        "url": "https://web.winterhavenchamber.com/Manufacturers-Processors/Polyglass-USA%2C-Inc-3947",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Florida Chemical Company, LLC",
+    "industry": "Advanced Manufacturing",
+    "city": "Winter Haven, FL",
+    "lat": 28.067,
+    "lon": -81.719,
+    "local_presence": "major_facility",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Greater Winter Haven Chamber-listed manufacturing company in Winter Haven. Sponsor-program enrichment is pending.",
+    "discovery_source": "Greater Winter Haven Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Winter Haven Chamber \u2014 Florida Chemical Company, LLC",
+        "url": "https://web.winterhavenchamber.com/Manufacturers-Processors/Florida-Chemical-Company%2C-LLC-683",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Brown International Corporation, LLC",
+    "industry": "Advanced Manufacturing",
+    "city": "Winter Haven, FL",
+    "lat": 28.028,
+    "lon": -81.743,
+    "local_presence": "headquarters",
+    "capacity_tier": "medium",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Greater Winter Haven Chamber-listed manufacturer/processor and long-time Chamber member. Sponsor-program enrichment is pending.",
+    "discovery_source": "Greater Winter Haven Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Winter Haven Chamber \u2014 Manufacturers & Processors directory",
+        "url": "https://web.winterhavenchamber.com/Manufacturers-Processors?ysort=true",
+        "official": false,
+        "date": "2026"
+      }
+    ]
+  },
+  {
+    "company": "Packaging Corporation of America",
+    "industry": "Advanced Manufacturing",
+    "city": "Winter Haven, FL",
+    "lat": 28.078,
+    "lon": -81.76,
+    "local_presence": "major_facility",
+    "capacity_tier": "enterprise",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": false,
+      "quantified_giving": false,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Greater Winter Haven Chamber-listed manufacturer/processor with a Winter Haven facility. Sponsor-program enrichment is pending.",
+    "discovery_source": "Greater Winter Haven Chamber of Commerce",
+    "evidence_status": "Chamber verified; company enrichment pending",
+    "sources": [
+      {
+        "title": "Winter Haven Chamber \u2014 Manufacturers & Processors directory",
+        "url": "https://web.winterhavenchamber.com/Manufacturers-Processors?ysort=true",
+        "official": false,
+        "date": "2026"
+      }
+    ]
   }
 ]

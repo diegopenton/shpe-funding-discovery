@@ -8,7 +8,7 @@ ranking fundraising prospects, and showing **why** each organization received it
 - **Florida Polytechnic University** — 10 mi / 25 mi
 - **Dartmouth College** — 10 mi / 25 mi
 
-The included seed dataset uses real organizations and first-party public evidence. The current MVP includes
+The included dataset uses real organizations. It now combines first-party company evidence with Chamber-verified local discovery records from the Lakeland Chamber of Commerce and Greater Winter Haven Chamber of Commerce. Chamber-only records are clearly marked as awaiting company-site enrichment. The current MVP includes
 Publix, Lakeland Electric, GEICO, Hypertherm Associates, Dartmouth Health, and King Arthur Baking Company.
 
 ## What makes the score different?
