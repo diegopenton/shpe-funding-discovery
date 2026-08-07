@@ -37,7 +37,7 @@ with st.sidebar:
     st.markdown("### ◆ SHPE")
     st.caption("FUNDING DISCOVERY")
     st.write("")
-    page = st.radio("Navigation", ["Discovery", "Scoring model", "Evidence sources"], label_visibility="collapsed")
+    page = st.radio("Navigation", ["Discovery", "Chamber leads", "Scoring model", "Evidence sources"], label_visibility="collapsed")
     st.markdown("---")
     st.caption("Real organizations • first-party evidence")
     st.caption("No LLM required")
@@ -145,6 +145,59 @@ if page == "Discovery":
                 date=f" · {s['date']}" if s.get("date") else ""
                 st.markdown(f"**[{s['title']}]({s['url']})**  \n<span class='small'>Official source{date}</span>",unsafe_allow_html=True)
             st.info("A missing signal means 'not verified in this prototype' — not necessarily 'no'.")
+
+
+elif page=="Chamber leads":
+    st.subheader("Local Chamber lead pool")
+    st.caption("Real organizations discovered from nearby Chamber / business-alliance directories. Run the refresh script to target 100 per university area.")
+
+    chamber_cache_path=Path(__file__).parent/"data"/"chamber_cache.json"
+    chamber_cache=json.loads(chamber_cache_path.read_text()) if chamber_cache_path.exists() else {}
+    area=st.selectbox("University area",list(CENTERS),key="chamber_area")
+    leads=chamber_cache.get(area,[])
+
+    a,b,c,d=st.columns(4)
+    a.metric("Cached Chamber leads",len(leads))
+    b.metric("Target",100)
+    c.metric("Company websites",sum(bool(x.get("website")) for x in leads))
+    d.metric("Verified public emails",sum(bool(x.get("contact_email")) for x in leads))
+
+    st.info("To populate/refresh up to 100 real directory leads per university, run:  python refresh_chamber_data.py --target-per-region 100")
+
+    if leads:
+        options=[x["company"] for x in leads]
+        selected_name=st.selectbox("Open Chamber-listed organization",options)
+        lead=next(x for x in leads if x["company"]==selected_name)
+        st.markdown(f"""<div class="card">
+        <div class="name">{lead['company']}</div>
+        <div class="muted">{lead.get('address','')}</div>
+        <span class="badge">{lead.get('discovery_source','Chamber directory')}</span>
+        <p style="margin-top:12px"><b>Phone:</b> {lead.get('phone') or 'Not listed'}</p>
+        </div>""",unsafe_allow_html=True)
+
+        x,y,z=st.columns(3)
+        with x:
+            if lead.get("website"):
+                st.link_button("Visit company website",lead["website"],use_container_width=True)
+            else:
+                st.link_button("Open Chamber listing",lead.get("profile_url","#"),use_container_width=True)
+        with y:
+            if lead.get("contact_email"):
+                st.link_button("Email company",f"mailto:{lead['contact_email']}",use_container_width=True)
+                st.caption(lead["contact_email"])
+            elif lead.get("contact_page"):
+                st.link_button("Open company contact page",lead["contact_page"],use_container_width=True)
+                st.caption("No public email verified")
+            else:
+                st.link_button("Open Chamber listing",lead.get("profile_url","#"),use_container_width=True)
+                st.caption("Public email not yet verified")
+        with z:
+            st.caption("Contact data is only displayed when found publicly; the app does not guess email addresses.")
+
+        table=pd.DataFrame(leads)
+        cols=[c for c in ["company","address","phone","website","contact_email","discovery_source"] if c in table.columns]
+        st.dataframe(table[cols],use_container_width=True,hide_index=True,
+                     column_config={"website":st.column_config.LinkColumn("Website")})
 
 elif page=="Scoring model":
     st.subheader("Transparent 100-point scoring model")

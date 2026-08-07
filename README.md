@@ -91,3 +91,36 @@ Before production use, replace them with geocoded address records and retain the
 
 This is a student-built fundraising research prototype. Scores are prioritization aids, not statements of
 corporate intent or guarantees of sponsorship.
+
+
+## Chamber lead collector
+
+The repository now includes a respectful public-directory collector configured for nearby business organizations.
+
+Florida Poly sources:
+- Lakeland Chamber of Commerce
+- Greater Winter Haven Chamber of Commerce
+- Greater Bartow Chamber of Commerce
+- Greater Auburndale Chamber of Commerce
+
+Dartmouth sources:
+- Upper Valley Business Alliance
+- Hartford Area Chamber of Commerce (VT)
+- Woodstock Area Chamber of Commerce
+
+Target up to 100 records per university area:
+
+```bash
+python refresh_chamber_data.py --target-per-region 100
+```
+
+The collector attempts to retain:
+- company name
+- address
+- phone
+- Chamber / Alliance source
+- company website
+- public business email, when actually published
+- public contact page, when no email is available
+
+It never guesses email addresses. `info@domain` is not created unless that exact address is found publicly.

@@ -1,0 +1,99 @@
+{
+  "Florida Polytechnic University": [
+    {
+      "name": "Lakeland Chamber of Commerce",
+      "type": "chambermaster_alpha",
+      "base_url": "https://web.lakelandchamber.com",
+      "directory_url": "https://web.lakelandchamber.com/search",
+      "cities": [
+        "Lakeland",
+        "Auburndale",
+        "Bartow",
+        "Winter Haven",
+        "Lake Alfred",
+        "Polk City"
+      ]
+    },
+    {
+      "name": "Greater Winter Haven Chamber of Commerce",
+      "type": "chambermaster_alpha",
+      "base_url": "https://web.winterhavenchamber.com",
+      "directory_url": "https://web.winterhavenchamber.com/search",
+      "cities": [
+        "Winter Haven",
+        "Auburndale",
+        "Lake Alfred",
+        "Dundee",
+        "Lakeland"
+      ]
+    },
+    {
+      "name": "Greater Bartow Chamber of Commerce",
+      "type": "growthzone_alpha",
+      "base_url": "https://mychamber.bartowchamber.com",
+      "directory_url": "https://mychamber.bartowchamber.com/list",
+      "cities": [
+        "Bartow",
+        "Lakeland",
+        "Highland City",
+        "Mulberry"
+      ]
+    },
+    {
+      "name": "Greater Auburndale Chamber of Commerce",
+      "type": "static_directory",
+      "base_url": "https://www.myauburndalechamber.com",
+      "directory_url": "https://www.myauburndalechamber.com/membership-directory",
+      "cities": [
+        "Auburndale",
+        "Winter Haven",
+        "Lakeland",
+        "Lake Alfred"
+      ]
+    }
+  ],
+  "Dartmouth College": [
+    {
+      "name": "Upper Valley Business Alliance",
+      "type": "growthzone_alpha",
+      "base_url": "https://visittheuppervalley.uppervalleybusinessalliance.com",
+      "directory_url": "https://visittheuppervalley.uppervalleybusinessalliance.com/list",
+      "cities": [
+        "Hanover",
+        "Lebanon",
+        "West Lebanon",
+        "White River Junction",
+        "Norwich",
+        "Quechee",
+        "Wilder"
+      ]
+    },
+    {
+      "name": "Hartford Area Chamber of Commerce",
+      "type": "growthzone_alpha",
+      "base_url": "https://business.hartfordvtchamber.com",
+      "directory_url": "https://business.hartfordvtchamber.com/list",
+      "cities": [
+        "White River Junction",
+        "Quechee",
+        "Wilder",
+        "Hartford",
+        "West Hartford",
+        "Norwich",
+        "Hanover",
+        "West Lebanon"
+      ]
+    },
+    {
+      "name": "Woodstock Area Chamber of Commerce",
+      "type": "website_directory",
+      "base_url": "https://www.woodstockvt.com",
+      "directory_url": "https://www.woodstockvt.com/chamber-of-commerce/",
+      "cities": [
+        "Woodstock",
+        "Quechee",
+        "Hartland"
+      ]
+    }
+  ]
+}
