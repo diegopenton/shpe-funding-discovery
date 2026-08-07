@@ -1,0 +1,272 @@
+[
+  {
+    "company": "Publix Super Markets",
+    "industry": "Retail",
+    "city": "Lakeland, FL",
+    "lat": 28.054,
+    "lon": -81.956,
+    "local_presence": "headquarters",
+    "capacity_tier": "enterprise",
+    "signals": {
+      "foundation_or_grants": true,
+      "explicit_sponsorship": true,
+      "community_giving": true,
+      "quantified_giving": true,
+      "explicit_stem": false,
+      "education_programs": true,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": true,
+      "documented_sponsorship_examples": true,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": true,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Publix has formal community-giving and sponsorship request channels, supports youth and education, and operates from its Lakeland headquarters.",
+    "sources": [
+      {
+        "title": "Publix Community Giving",
+        "url": "https://corporate.publix.com/community/requests",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "Publix Serves",
+        "url": "https://csr.publix.com/publix-serves/",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "Publix Super Markets Charities $11M hunger commitment",
+        "url": "https://corporate.publix.com/newsroom/news-stories/09172024---publix-super-markets-charities-donates-%2411m-to-continue-to-help-feed-neighbors-in-need",
+        "official": true,
+        "date": "2024-09-17"
+      }
+    ]
+  },
+  {
+    "company": "Lakeland Electric",
+    "industry": "Energy & Utilities",
+    "city": "Lakeland, FL",
+    "lat": 28.042,
+    "lon": -81.9498,
+    "local_presence": "major_facility",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": true,
+      "explicit_sponsorship": true,
+      "community_giving": true,
+      "quantified_giving": true,
+      "explicit_stem": true,
+      "education_programs": true,
+      "scholarships": true,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": true,
+      "documented_sponsorship_examples": true,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": true,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Lakeland Electric publishes a Community Giving Grant Program, awards STEAM scholarships, and states that 30 organizations receive $1,000 sponsorships each year.",
+    "sources": [
+      {
+        "title": "Lakeland Electric Community Giving",
+        "url": "https://lakelandelectric.com/our-company/community",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "Community Giving Grant information",
+        "url": "https://lakelandelectric.com/news/___community-giving-grant-information",
+        "official": true,
+        "date": "2024"
+      }
+    ]
+  },
+  {
+    "company": "GEICO",
+    "industry": "Finance & Insurance",
+    "city": "Lakeland, FL",
+    "lat": 28.011,
+    "lon": -81.905,
+    "local_presence": "major_facility",
+    "capacity_tier": "enterprise",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": true,
+      "quantified_giving": true,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": true,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": true,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "GEICO lists Lakeland as an employment location and describes GEICO Cares plus an employee matching-gift program that includes higher-education institutions.",
+    "sources": [
+      {
+        "title": "GEICO Careers / GEICO Cares",
+        "url": "https://careers.geico.com/us/en/",
+        "official": true,
+        "date": ""
+      }
+    ]
+  },
+  {
+    "company": "Hypertherm Associates",
+    "industry": "Advanced Manufacturing",
+    "city": "Hanover/Lebanon, NH",
+    "lat": 43.684,
+    "lon": -72.282,
+    "local_presence": "headquarters",
+    "capacity_tier": "large",
+    "signals": {
+      "foundation_or_grants": true,
+      "explicit_sponsorship": false,
+      "community_giving": true,
+      "quantified_giving": true,
+      "explicit_stem": true,
+      "education_programs": true,
+      "scholarships": false,
+      "internships": true,
+      "student_programs": true,
+      "technical_careers": true,
+      "documented_sponsorship_examples": true,
+      "university_partnerships": false,
+      "college_internships": true,
+      "education_partnerships": true,
+      "dei_commitment": true,
+      "inclusive_grantmaking_or_erg": true
+    },
+    "summary": "Hypertherm's HOPE Foundation funds Upper Valley nonprofits, has a dedicated STEM strategy, supports robotics programs, and documents student visits and internship activity.",
+    "sources": [
+      {
+        "title": "HOPE Foundation",
+        "url": "https://epiint.hypertherm.com/hope-foundation/about/",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "HOPE Foundation STEM focus",
+        "url": "https://epiint.hypertherm.com/hope-foundation/donors/",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "Upper Valley grant applications",
+        "url": "https://epiint.hypertherm.com/hope-foundation/grantees/apply-for-grants/",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "HOPE Foundation mission and inclusion principles",
+        "url": "https://epiint.hypertherm.com/hope-foundation/about/mission-and-vision/",
+        "official": true,
+        "date": ""
+      }
+    ]
+  },
+  {
+    "company": "Dartmouth Health",
+    "industry": "Healthcare",
+    "city": "Lebanon, NH",
+    "lat": 43.6767,
+    "lon": -72.2733,
+    "local_presence": "major_facility",
+    "capacity_tier": "enterprise",
+    "signals": {
+      "foundation_or_grants": false,
+      "explicit_sponsorship": false,
+      "community_giving": true,
+      "quantified_giving": true,
+      "explicit_stem": true,
+      "education_programs": true,
+      "scholarships": false,
+      "internships": true,
+      "student_programs": true,
+      "technical_careers": true,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": true,
+      "college_internships": true,
+      "education_partnerships": true,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "Dartmouth Health reports more than $326M in community benefits for DHMC/DHC and runs paid internships, student experiences, training, and academic partnerships.",
+    "sources": [
+      {
+        "title": "$326M community benefits",
+        "url": "https://www.dartmouth-health.org/about/news/article/dartmouth-hitchcock-medical-center-dartmouth-hitchcock-clinics-provides-more-326-million",
+        "official": true,
+        "date": "2025-07-07"
+      },
+      {
+        "title": "Paid and for-credit internships",
+        "url": "https://www.dartmouth-health.org/careers/internships",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "Student experiences",
+        "url": "https://www.dartmouth-health.org/careers/students",
+        "official": true,
+        "date": ""
+      },
+      {
+        "title": "Training programs",
+        "url": "https://www.dartmouth-health.org/careers/training",
+        "official": true,
+        "date": ""
+      }
+    ]
+  },
+  {
+    "company": "King Arthur Baking Company",
+    "industry": "Food & Consumer",
+    "city": "Norwich, VT",
+    "lat": 43.7131,
+    "lon": -72.3083,
+    "local_presence": "headquarters",
+    "capacity_tier": "medium",
+    "signals": {
+      "foundation_or_grants": true,
+      "explicit_sponsorship": false,
+      "community_giving": true,
+      "quantified_giving": true,
+      "explicit_stem": false,
+      "education_programs": false,
+      "scholarships": false,
+      "internships": false,
+      "student_programs": false,
+      "technical_careers": false,
+      "documented_sponsorship_examples": false,
+      "university_partnerships": false,
+      "college_internships": false,
+      "education_partnerships": false,
+      "dei_commitment": false,
+      "inclusive_grantmaking_or_erg": false
+    },
+    "summary": "King Arthur Baking publishes a formal community-giving program with grants, in-kind donations, and multi-year partner grants.",
+    "sources": [
+      {
+        "title": "King Arthur Baking Community Giving",
+        "url": "https://www.kingarthurbaking.com/impact/community-giving",
+        "official": true,
+        "date": ""
+      }
+    ]
+  }
+]
