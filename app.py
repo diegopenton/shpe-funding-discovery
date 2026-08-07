@@ -108,27 +108,27 @@ if page=="Discovery":
 
     m1,m2,m3,m4=st.columns(4)
     m1.metric("Organizations in radius",len(rows))
-    m2.metric("Evidence-scored",sum(r["status"]=="Scored" for r in rows))
-    m3.metric("Chamber leads",sum(r["status"]=="Needs enrichment" for r in rows))
+    m2.metric("Scored prospects",sum(r["status"]=="Scored" for r in rows))
+    m3.metric("Local businesses",sum(r["status"]=="Needs enrichment" for r in rows))
     m4.metric("Public contact routes",sum(bool(r["record"].get("website") or r["record"].get("contact_page") or r["record"].get("contact_email")) for r in rows))
 
     left,right=st.columns([1.45,1],gap="large")
     with left:
         st.subheader("Local sponsor map")
-        st.caption("Blue = evidence-scored company. Gold = Chamber-discovered lead awaiting enrichment.")
+        st.caption("Organizations within the selected university radius.")
         if rows:
             map_df=pd.DataFrame([{
                 "lat":r["lat"],"lon":r["lon"],"company":r["company"],
                 "score_label":f"{r['score']}/100" if r["score"] is not None else "Unscored",
                 "status":r["status"],
-                "color":[0,103,185,185] if r["score"] is not None else [166,102,0,175],
-                "radius":700 if r["score"] is not None else 520
+                "color":[0,103,185,185],
+                "radius":620
             } for r in rows])
             layer=pdk.Layer("ScatterplotLayer",map_df,get_position="[lon, lat]",get_radius="radius",
                             get_fill_color="color",pickable=True,auto_highlight=True)
             view=pdk.ViewState(latitude=center["lat"],longitude=center["lon"],zoom=9 if radius==25 else 10.4)
             st.pydeck_chart(pdk.Deck(layers=[layer],initial_view_state=view,
-                tooltip={"text":"{company}\\n{status}\\n{score_label}"}),use_container_width=True)
+                tooltip={"text":"{company}\\n{score_label}"}),use_container_width=True)
         else:
             st.info("No records match the current filters.")
 
