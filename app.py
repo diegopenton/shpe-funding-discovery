@@ -252,6 +252,20 @@ def sync_company_picker():
     if picked:
         st.session_state.selected_company=picked
 
+def selected_map_company(event, layer_id="company-markers"):
+    try:
+        selection = event.selection
+        objects = selection.objects
+    except (AttributeError, TypeError):
+        try:
+            objects = event.get("selection", {}).get("objects", {})
+        except (AttributeError, TypeError):
+            return None
+    picks = objects.get(layer_id, []) if objects else []
+    if not picks:
+        return None
+    return picks[0].get("company")
+
 with st.sidebar:
     st.markdown("### ◆ SHPE")
     st.caption("FUNDING DISCOVERY")
@@ -289,8 +303,6 @@ if page=="Discovery":
             st.session_state.selected_company=rows[0]["company"]
         if rows and st.session_state.get("company_picker") not in names:
             st.session_state.company_picker=st.session_state.selected_company
-        if rows:
-            st.selectbox("Open company",names,key="company_picker",on_change=sync_company_picker)
 
     # Recompute current results after the collapsed panel so the rest of the page works normally.
     center=CENTERS[center_name]
@@ -313,11 +325,45 @@ if page=="Discovery":
         st.subheader("Local sponsor map")
         if rows:
             map_df=pd.DataFrame([{"lat":r["lat"],"lon":r["lon"],"company":r["company"],"score":r["record"].get("ai_analysis",{}).get("ai_score",r["score"] if r["score"] is not None else "—")} for r in rows])
-            layer=pdk.Layer("ScatterplotLayer",map_df,get_position="[lon,lat]",get_radius=3,radius_units="pixels",radius_scale=1,radius_min_pixels=2,radius_max_pixels=3,get_fill_color=[0,103,185,190],pickable=True,auto_highlight=True,stroked=True,get_line_color=[255,255,255,160],line_width_min_pixels=.5)
+            layer=pdk.Layer(
+                "ScatterplotLayer",
+                map_df,
+                id="company-markers",
+                get_position="[lon,lat]",
+                get_radius=5,
+                radius_units="pixels",
+                radius_scale=1,
+                radius_min_pixels=4,
+                radius_max_pixels=6,
+                get_fill_color=[0,103,185,205],
+                pickable=True,
+                auto_highlight=True,
+                stroked=True,
+                get_line_color=[255,255,255,190],
+                line_width_min_pixels=1,
+            )
             state=pdk.ViewState(latitude=center["lat"],longitude=center["lon"],zoom=9 if radius==25 else 10.4)
-            st.pydeck_chart(pdk.Deck(layers=[layer],initial_view_state=state,tooltip={"text":"{company}\nScore: {score}"}),use_container_width=True,height=390)
+            map_event=st.pydeck_chart(
+                pdk.Deck(layers=[layer],initial_view_state=state,tooltip={"text":"{company}\nScore: {score}"}),
+                use_container_width=True,
+                height=390,
+                on_select="rerun",
+                selection_mode="single-object",
+                key="company_map",
+            )
+            clicked_company=selected_map_company(map_event)
+            if clicked_company in names:
+                st.session_state.selected_company=clicked_company
+                st.session_state.company_picker=clicked_company
+                selected=next((r for r in rows if r["company"]==clicked_company),selected)
+            st.caption("Tap or click a company dot to open its profile.")
 
     with right:
+        if rows:
+            if st.session_state.get("company_picker") not in names:
+                st.session_state.company_picker=st.session_state.get("selected_company",names[0])
+            st.selectbox("Select company",names,key="company_picker",on_change=sync_company_picker)
+            selected=next((r for r in rows if r["company"]==st.session_state.get("selected_company")),selected)
         st.subheader("Company profile")
         if not selected:
             st.info("Select a company from the list.")
