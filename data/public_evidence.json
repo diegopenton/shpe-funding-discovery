@@ -1,0 +1,23 @@
+{
+  "Publix Super Markets": [
+    {"title":"Publix Community Giving","url":"https://corporate.publix.com/community/requests"},
+    {"title":"Publix Serves","url":"https://csr.publix.com/publix-serves/"}
+  ],
+  "Lakeland Electric": [
+    {"title":"Lakeland Electric Community Giving","url":"https://lakelandelectric.com/our-company/community"}
+  ],
+  "GEICO": [
+    {"title":"GEICO Careers and Community","url":"https://careers.geico.com/us/en/"}
+  ],
+  "Hypertherm Associates": [
+    {"title":"Hypertherm Associates — About","url":"https://www.hypertherm.com/about-us/"},
+    {"title":"2024 HOPE Foundation Annual Report","url":"https://www.hypertherm.com/contentassets/985779a3db6b4edf81b2cefa9019a87f/emag_hopehappenings_fy2024.pdf"}
+  ],
+  "Dartmouth Health": [
+    {"title":"Dartmouth Health Internships","url":"https://www.dartmouth-health.org/careers/internships"},
+    {"title":"Dartmouth Health Community Benefits","url":"https://www.dartmouth-health.org/about/news/article/dartmouth-hitchcock-medical-center-dartmouth-hitchcock-clinics-provides-more-326-million"}
+  ],
+  "King Arthur Baking Company": [
+    {"title":"King Arthur Baking Community Giving","url":"https://www.kingarthurbaking.com/impact/community-giving"}
+  ]
+}
