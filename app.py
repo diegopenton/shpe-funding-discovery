@@ -151,7 +151,7 @@ public_websites = load_json("public_websites.json", {})
 public_evidence = load_json("public_evidence.json", {})
 
 chamber = load_json("chamber_cache.json", {})
-for supplemental in ("chamber_extra.json", "chamber_more.json", "chamber_dense.json"):
+for supplemental in ("chamber_extra.json", "chamber_more.json", "chamber_dense.json", "community_priority.json"):
     extra = load_json(supplemental, {})
     for area, entries in extra.items():
         chamber.setdefault(area, []).extend(entries)
@@ -166,7 +166,7 @@ for area, entries in list(chamber.items()):
             merged[key] = item
         else:
             existing = merged[key]
-            for field in ("website","contact_email","contact_page","phone","address","profile_url","lat","lon"):
+            for field in ("website","contact_email","contact_page","phone","address","profile_url","lat","lon","community_tags","ownership_basis","impact_summary","impact_source_url","coordinate_note"):
                 if not existing.get(field) and item.get(field):
                     existing[field] = item[field]
     chamber[area] = list(merged.values())
@@ -236,6 +236,8 @@ def chamber_rows(center_name,radius):
 
 def description_for(row):
     record=row["record"]
+    if record.get("impact_summary"):
+        return record["impact_summary"]
     if record.get("summary"):
         return record["summary"]
     source=record.get("discovery_source","a local business directory")
@@ -372,7 +374,8 @@ if page=="Discovery":
             website=company_website(record); profile=safe_profile_url(record); contact=record.get("contact_page",""); email=record.get("contact_email","")
             score_value=ai["ai_score"] if ai else selected["score"]
             score_label=ai.get("sponsor_tier","Research in progress") if ai else ("Analyzed" if selected["score"] is not None else "Research in progress")
-            badge_html=('<span class="badge green">SHPE National Contact</span>' if nc else '')+('<span class="badge green">AI analyzed</span>' if ai else '')+('<span class="badge green">Verified SHPE Sponsor</span>' if sp else '')
+            community_badges="".join(f'<span class="badge">{tag}</span>' for tag in record.get("community_tags",[]))
+            badge_html=('<span class="badge green">SHPE National Contact</span>' if nc else '')+('<span class="badge green">AI analyzed</span>' if ai else '')+('<span class="badge green">Verified SHPE Sponsor</span>' if sp else '')+community_badges
             st.markdown(f"""<div class="card"><div class="name">{selected['company']}</div><div class="muted">{record.get('address') or record.get('city','')} · {selected['distance']} miles from {center_name}</div>{badge_html}<p style="margin-top:12px">{description_for(selected)}</p></div>""",unsafe_allow_html=True)
 
             if score_value is not None:
@@ -410,6 +413,15 @@ if page=="Discovery":
                     st.success(nc.get("relationship","Verified relationship"))
                     source_url=nc.get("source_url","")
                     if is_public_url(source_url): st.link_button("View SHPE relationship source",source_url,use_container_width=True)
+
+                if record.get("community_tags"):
+                    st.markdown("**Community / STEM relevance**")
+                    st.write(" · ".join(record.get("community_tags",[])))
+                    if record.get("ownership_basis"):
+                        st.caption(record["ownership_basis"])
+                    impact_url=record.get("impact_source_url","")
+                    if is_public_url(impact_url):
+                        st.link_button("View community / STEM source",impact_url,use_container_width=True)
 
                 st.markdown("**Contact**")
                 if email: st.link_button("Email company",f"mailto:{email}",use_container_width=True)
