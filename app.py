@@ -40,6 +40,11 @@ div[data-testid="stMetric"]{background:white;border:1px solid var(--line);paddin
 ROOT = Path(__file__).parent
 enriched = json.loads((ROOT / "data" / "companies.json").read_text())
 chamber = json.loads((ROOT / "data" / "chamber_cache.json").read_text()) if (ROOT / "data" / "chamber_cache.json").exists() else {}
+extra_path = ROOT / "data" / "chamber_extra.json"
+if extra_path.exists():
+    extra = json.loads(extra_path.read_text())
+    for area, entries in extra.items():
+        chamber.setdefault(area, []).extend(entries)
 national = json.loads((ROOT / "data" / "shpe_national_relationships.json").read_text()) if (ROOT / "data" / "shpe_national_relationships.json").exists() else {}
 
 AI = {
