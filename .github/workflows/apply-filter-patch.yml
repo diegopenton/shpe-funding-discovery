@@ -1,0 +1,31 @@
+name: Apply filter patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-filter-patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch app.py
+        run: python scripts/patch_filters.py
+      - name: Validate app.py
+        run: python -m py_compile app.py
+      - name: Commit patched app
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- app.py; then
+            echo "No app.py changes needed"
+            exit 0
+          fi
+          git add app.py
+          git commit -m "ui: collapse filters by default"
+          git push
