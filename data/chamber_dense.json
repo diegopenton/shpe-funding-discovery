@@ -1,0 +1,16 @@
+{
+  "Florida Polytechnic University": [
+    {"company":"Hancock Whitney Bank","address":"225 E Lemon Street Suite 110, Lakeland, FL 33801","phone":"(813) 405-3080","discovery_source":"Lakeland Chamber of Commerce","profile_url":"https://web.lakelandchamber.com/Banks","lat":28.0426,"lon":-81.9557},
+    {"company":"Centennial Bank","address":"440 S Florida Ave, Lakeland, FL 33801","phone":"(863) 682-0600","discovery_source":"Lakeland Chamber of Commerce","profile_url":"https://web.lakelandchamber.com/Banks","lat":28.0380,"lon":-81.9560},
+    {"company":"Crews Bank & Trust","address":"221 E Main St, Lakeland, FL 33801","phone":"(863) 337-7133","discovery_source":"Lakeland Chamber of Commerce","profile_url":"https://web.lakelandchamber.com/Banks/Crews-Bank-Trust-3009","lat":28.0440,"lon":-81.9560},
+    {"company":"Valley Bank","address":"427 S Florida Ave, Lakeland, FL 33801","phone":"(863) 581-8888","discovery_source":"Lakeland Chamber of Commerce","profile_url":"https://web.lakelandchamber.com/Banks/Valley-Bank-2579","lat":28.0382,"lon":-81.9570},
+    {"company":"C&K Architects / Interiors, Inc.","address":"280 W Central Ave, Winter Haven, FL 33880","phone":"(813) 884-2000","discovery_source":"Greater Winter Haven Chamber of Commerce","profile_url":"https://web.winterhavenchamber.com/Architect%2C-Engineer%2C-Surveyor%2C-Planners/Engineers","lat":28.0221,"lon":-81.7303}
+  ],
+  "Dartmouth College": [
+    {"company":"LISTEN Community Services","address":"60 Hanover St, Lebanon, NH 03766","phone":"(603) 448-4553","discovery_source":"Upper Valley Business Alliance","profile_url":"https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l","lat":43.64414,"lon":-72.25452},
+    {"company":"Legacy Mortgage, LLC","address":"2 Buck Road, Hanover, NH 03755","phone":"","discovery_source":"Upper Valley Business Alliance","profile_url":"https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l","lat":43.68951,"lon":-72.27089},
+    {"company":"Leddy Group","address":"115 Etna Rd, Lebanon, NH 03766","phone":"(603) 727-0102","contact_email":"information@leddygroup.com","discovery_source":"Upper Valley Business Alliance","profile_url":"https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l","lat":43.6520,"lon":-72.2400},
+    {"company":"Lou's Restaurant & Bakery","address":"Hanover, NH 03755","phone":"(603) 643-3321","contact_email":"MeetMe@lousrestaurant.com","discovery_source":"Upper Valley Business Alliance","profile_url":"https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l","lat":43.7020,"lon":-72.2890},
+    {"company":"Lebanon Village Pizza","address":"45 Hanover St, Lebanon, NH 03766","phone":"","discovery_source":"Upper Valley Business Alliance","profile_url":"https://visittheuppervalley.uppervalleybusinessalliance.com/list/searchalpha/l","lat":43.6440,"lon":-72.2540}
+  ]
+}
