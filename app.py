@@ -47,9 +47,10 @@ def load_json(name, default):
 enriched = load_json("companies.json", [])
 national = load_json("shpe_national_relationships.json", {})
 public_websites = load_json("public_websites.json", {})
+public_evidence = load_json("public_evidence.json", {})
 
 chamber = load_json("chamber_cache.json", {})
-for supplemental in ("chamber_extra.json", "chamber_more.json"):
+for supplemental in ("chamber_extra.json", "chamber_more.json", "chamber_dense.json"):
     extra = load_json(supplemental, {})
     for area, entries in extra.items():
         chamber.setdefault(area, []).extend(entries)
@@ -64,7 +65,7 @@ for area, entries in list(chamber.items()):
             merged[key] = item
         else:
             existing = merged[key]
-            for field in ("website", "contact_email", "contact_page", "phone", "address", "profile_url"):
+            for field in ("website", "contact_email", "contact_page", "phone", "address", "profile_url", "lat", "lon"):
                 if not existing.get(field) and item.get(field):
                     existing[field] = item[field]
     chamber[area] = list(merged.values())
@@ -92,15 +93,8 @@ for company in enriched:
             "next_steps": [],
         }
 
-PUBLIC_EVIDENCE_OVERRIDES = {
-    "Hypertherm Associates": [
-        {"title": "Hypertherm Associates — About", "url": "https://www.hypertherm.com/about-us/"},
-        {"title": "2024 HOPE Foundation Annual Report", "url": "https://www.hypertherm.com/contentassets/985779a3db6b4edf81b2cefa9019a87f/emag_hopehappenings_fy2024.pdf"},
-    ]
-}
-
-BLOCKED_HOST_PARTS = ("epiint.", "integration.", "staging.")
-BLOCKED_PATH_PARTS = ("/login", "/signin", "/sign-in", "/sso", "/auth")
+BLOCKED_HOST_PARTS = ("epiint.", "integration.", "staging.", "localhost", "127.0.0.1")
+BLOCKED_PATH_PARTS = ("/login", "/signin", "/sign-in", "/sso", "/auth", "/account/login")
 
 def is_public_url(url):
     if not url or not url.startswith(("http://", "https://")):
@@ -134,7 +128,11 @@ def scored_rows(center_name, radius):
     for company in enriched:
         score, parts, distance = calculate(company, center)
         if distance <= radius:
-            rows.append({"company": company["company"], "lat": company["lat"], "lon": company["lon"], "distance": distance, "score": score, "parts": parts, "record": company, "status": "Scored"})
+            rows.append({
+                "company": company["company"], "lat": company["lat"], "lon": company["lon"],
+                "distance": distance, "score": score, "parts": parts, "record": company,
+                "status": "analyzed"
+            })
     return rows
 
 def chamber_rows(center_name, radius):
@@ -145,30 +143,28 @@ def chamber_rows(center_name, radius):
             continue
         distance = round(haversine_miles(center["lat"], center["lon"], company["lat"], company["lon"]), 1)
         if distance <= radius:
-            rows.append({"company": company["company"], "lat": company["lat"], "lon": company["lon"], "distance": distance, "score": None, "parts": None, "record": company, "status": "Needs enrichment"})
+            rows.append({
+                "company": company["company"], "lat": company["lat"], "lon": company["lon"],
+                "distance": distance, "score": None, "parts": None, "record": company,
+                "status": "local"
+            })
     return rows
 
 def description_for(row):
     record = row["record"]
     if record.get("summary"):
         return record["summary"]
-    source = record.get("discovery_source", "a nearby Chamber directory")
-    phone = record.get("phone", "")
+    source = record.get("discovery_source", "a local business directory")
     text = f"{row['company']} is a local organization listed by {source}."
-    if phone:
-        text += f" Public business phone: {phone}."
+    if record.get("phone"):
+        text += f" Public business phone: {record['phone']}."
     return text
 
 def display_evidence(record):
-    name = record.get("company", "")
-    if name in PUBLIC_EVIDENCE_OVERRIDES:
-        return PUBLIC_EVIDENCE_OVERRIDES[name]
-    output = []
-    for source in record.get("sources", []):
-        url = source.get("url", "")
-        if is_public_url(url):
-            output.append({"title": source.get("title", "Source"), "url": url})
-    return output
+    return [
+        item for item in public_evidence.get(record.get("company", ""), [])
+        if is_public_url(item.get("url", ""))
+    ]
 
 with st.sidebar:
     st.markdown("### ◆ SHPE")
@@ -181,7 +177,7 @@ st.markdown(
 <div class="hero">
 <div style="color:#71d2ee;font-size:.72rem;font-weight:800;letter-spacing:.12em">FUNDRAISING INTELLIGENCE</div>
 <h1>SHPE Funding Discovery</h1>
-<p>Discover nearby organizations and inspect AI-assisted sponsorship potential.</p>
+<p>Discover nearby organizations and evaluate sponsorship potential.</p>
 </div>
 """,
     unsafe_allow_html=True,
@@ -194,29 +190,29 @@ if page == "Discovery":
     with c2:
         radius = st.radio("Radius", RADII, horizontal=True, format_func=lambda x: f"{x} mi")
     with c3:
-        view = st.selectbox("Records", ["All organizations", "Scored only", "Needs enrichment"])
+        view = st.selectbox("Companies", ["All companies", "Analyzed companies", "Local directory companies"])
     with c4:
-        minimum = st.selectbox("Minimum scored fit", [0, 50, 60, 70, 80, 90], format_func=lambda x: "Any score" if x == 0 else f"{x}+")
+        minimum = st.selectbox("Minimum sponsor score", [0, 50, 60, 70, 80, 90], format_func=lambda x: "Any score" if x == 0 else f"{x}+")
 
     center = CENTERS[center_name]
-    scored = [row for row in scored_rows(center_name, radius) if row["score"] >= minimum]
-    leads = chamber_rows(center_name, radius)
+    analyzed = [row for row in scored_rows(center_name, radius) if row["score"] >= minimum]
+    local = chamber_rows(center_name, radius)
 
-    if view == "Scored only":
-        rows = scored
-    elif view == "Needs enrichment":
-        rows = leads
+    if view == "Analyzed companies":
+        rows = analyzed
+    elif view == "Local directory companies":
+        rows = local
     else:
-        scored_names = {r["company"].casefold() for r in scored}
-        rows = scored + [r for r in leads if r["company"].casefold() not in scored_names]
+        analyzed_names = {r["company"].casefold() for r in analyzed}
+        rows = analyzed + [r for r in local if r["company"].casefold() not in analyzed_names]
 
     rows = sorted(rows, key=lambda r: (r["score"] is None, -(r["score"] or 0), r["distance"]))
 
     m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Organizations", len(rows))
-    m2.metric("Scored prospects", len(scored))
-    m3.metric("Local businesses", len(leads))
-    m4.metric("AI analyses", sum(bool(r["record"].get("ai_analysis")) for r in rows))
+    m1.metric("Companies", len(rows))
+    m2.metric("Analyzed", len(analyzed))
+    m3.metric("Local directory", len(local))
+    m4.metric("AI assessments", sum(bool(r["record"].get("ai_analysis")) for r in rows))
 
     if rows and st.session_state.get("selected_company") not in [r["company"] for r in rows]:
         st.session_state.selected_company = rows[0]["company"]
@@ -229,20 +225,60 @@ if page == "Discovery":
         st.subheader("Local sponsor map")
         if rows:
             map_df = pd.DataFrame([
-                {"lat": r["lat"], "lon": r["lon"], "company": r["company"], "score": r["record"].get("ai_analysis", {}).get("ai_score", r["score"] if r["score"] is not None else "Open")}
+                {
+                    "lat": r["lat"], "lon": r["lon"], "company": r["company"],
+                    "score": r["record"].get("ai_analysis", {}).get("ai_score", r["score"] if r["score"] is not None else "—")
+                }
                 for r in rows
             ])
-            layer = pdk.Layer("ScatterplotLayer", map_df, get_position="[lon,lat]", get_radius=4, radius_units="pixels", get_fill_color=[0, 103, 185, 190], pickable=True, auto_highlight=True)
-            state = pdk.ViewState(latitude=center["lat"], longitude=center["lon"], zoom=9 if radius == 25 else 10.4)
-            st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=state, tooltip={"text": "{company}\nScore: {score}"}), use_container_width=True, height=430)
+            layer = pdk.Layer(
+                "ScatterplotLayer",
+                map_df,
+                get_position="[lon,lat]",
+                get_radius=55,
+                radius_units="meters",
+                radius_min_pixels=2,
+                radius_max_pixels=4,
+                get_fill_color=[0, 103, 185, 190],
+                pickable=True,
+                auto_highlight=True,
+                stroked=True,
+                get_line_color=[255, 255, 255, 160],
+                line_width_min_pixels=0.5,
+            )
+            state = pdk.ViewState(
+                latitude=center["lat"], longitude=center["lon"],
+                zoom=9 if radius == 25 else 10.4
+            )
+            st.pydeck_chart(
+                pdk.Deck(layers=[layer], initial_view_state=state, tooltip={"text": "{company}\nScore: {score}"}),
+                use_container_width=True, height=430
+            )
 
         st.markdown("#### Companies")
         if rows:
             list_df = pd.DataFrame([
-                {"Company": r["company"], "Miles": r["distance"], "Score": r["record"].get("ai_analysis", {}).get("ai_score", r["score"] if r["score"] is not None else None)}
+                {
+                    "Company": r["company"],
+                    "Miles": r["distance"],
+                    "Score": r["record"].get("ai_analysis", {}).get("ai_score", r["score"] if r["score"] is not None else None),
+                    "Website": company_website(r["record"]),
+                }
                 for r in rows
             ])
-            event = st.dataframe(list_df, use_container_width=True, hide_index=True, height=330, selection_mode="single-row", on_select="rerun", column_config={"Miles": st.column_config.NumberColumn("Miles", format="%.1f"), "Score": st.column_config.NumberColumn("Score", format="%d")})
+            event = st.dataframe(
+                list_df,
+                use_container_width=True,
+                hide_index=True,
+                height=330,
+                selection_mode="single-row",
+                on_select="rerun",
+                column_config={
+                    "Miles": st.column_config.NumberColumn("Miles", format="%.1f"),
+                    "Score": st.column_config.NumberColumn("Score", format="%d"),
+                    "Website": st.column_config.LinkColumn("Website", display_text="Open"),
+                },
+            )
             if event.selection.rows:
                 st.session_state.selected_company = list_df.iloc[event.selection.rows[0]]["Company"]
                 selected = next((r for r in rows if r["company"] == st.session_state.selected_company), selected)
@@ -250,7 +286,7 @@ if page == "Discovery":
     with right:
         st.subheader("Company profile")
         if not selected:
-            st.info("Select an organization from the company list.")
+            st.info("Select a company from the list.")
         else:
             record = selected["record"]
             ai = record.get("ai_analysis")
@@ -261,7 +297,7 @@ if page == "Discovery":
             email = record.get("contact_email", "")
 
             score_value = ai["ai_score"] if ai else selected["score"]
-            score_label = ai.get("sponsor_tier", "AI analysis pending") if ai else ("Scored prospect" if selected["score"] is not None else "Analysis pending")
+            score_label = ai.get("sponsor_tier", "Research in progress") if ai else ("Analyzed" if selected["score"] is not None else "Research in progress")
 
             badge_html = ""
             if nc:
@@ -269,18 +305,36 @@ if page == "Discovery":
             if ai:
                 badge_html += '<span class="badge green">AI analyzed</span>'
 
-            st.markdown(f"""<div class="card"><div class="name">{selected['company']}</div><div class="muted">{record.get('address') or record.get('city','')} · {selected['distance']} miles from {center_name}</div>{badge_html}<p style="margin-top:12px">{description_for(selected)}</p></div>""", unsafe_allow_html=True)
+            st.markdown(
+                f"""<div class="card"><div class="name">{selected['company']}</div>
+                <div class="muted">{record.get('address') or record.get('city','')} · {selected['distance']} miles from {center_name}</div>
+                {badge_html}<p style="margin-top:12px">{description_for(selected)}</p></div>""",
+                unsafe_allow_html=True
+            )
 
             if score_value is not None:
                 s1, s2 = st.columns([1, 1.3])
                 s1.metric("Sponsor score", f"{score_value}/100")
                 s2.metric("Assessment", score_label)
             else:
-                st.metric("Sponsor score", "Pending")
+                st.metric("Sponsor score", "Research in progress")
 
             mini_df = pd.DataFrame([{"lat": selected["lat"], "lon": selected["lon"], "company": selected["company"]}])
-            mini_layer = pdk.Layer("ScatterplotLayer", mini_df, get_position="[lon,lat]", get_radius=5, radius_units="pixels", get_fill_color=[0, 103, 185, 210], pickable=True)
-            st.pydeck_chart(pdk.Deck(layers=[mini_layer], initial_view_state=pdk.ViewState(latitude=selected["lat"], longitude=selected["lon"], zoom=13), tooltip={"text": "{company}"}), use_container_width=True, height=185)
+            mini_layer = pdk.Layer(
+                "ScatterplotLayer", mini_df,
+                get_position="[lon,lat]",
+                get_radius=45, radius_units="meters",
+                radius_min_pixels=3, radius_max_pixels=5,
+                get_fill_color=[0, 103, 185, 210], pickable=True
+            )
+            st.pydeck_chart(
+                pdk.Deck(
+                    layers=[mini_layer],
+                    initial_view_state=pdk.ViewState(latitude=selected["lat"], longitude=selected["lon"], zoom=13),
+                    tooltip={"text": "{company}"}
+                ),
+                use_container_width=True, height=185
+            )
 
             tab1, tab2, tab3 = st.tabs(["Overview", "AI Analysis", "Metrics & Evidence"])
 
@@ -289,16 +343,16 @@ if page == "Discovery":
                     st.success(f"SHPE National: {nc.get('relationship','Verified relationship')}")
                     source_url = nc.get("source_url", "")
                     if is_public_url(source_url):
-                        st.link_button("Verify SHPE National relationship", source_url, use_container_width=True)
+                        st.link_button("View SHPE source", source_url, use_container_width=True)
 
                 cweb, cemail = st.columns(2)
                 with cweb:
                     if website:
                         st.link_button("Visit company website", website, use_container_width=True)
                     elif profile:
-                        st.link_button("View public Chamber listing", profile, use_container_width=True)
+                        st.link_button("View Chamber listing", profile, use_container_width=True)
                     else:
-                        st.button("Website not verified", disabled=True, use_container_width=True)
+                        st.button("Company website unavailable", disabled=True, use_container_width=True)
 
                 with cemail:
                     if email:
@@ -306,12 +360,12 @@ if page == "Discovery":
                     elif is_public_url(contact):
                         st.link_button("Open contact page", contact, use_container_width=True)
                     else:
-                        st.button("Email not verified", disabled=True, use_container_width=True)
+                        st.button("Public contact unavailable", disabled=True, use_container_width=True)
 
                 if record.get("phone"):
                     st.write(f"**Phone:** {record['phone']}")
                 if record.get("discovery_source"):
-                    st.write(f"**Directory:** {record['discovery_source']}")
+                    st.write(f"**Listed by:** {record['discovery_source']}")
 
             with tab2:
                 if ai:
@@ -335,16 +389,33 @@ if page == "Discovery":
                         for i, item in enumerate(ai["next_steps"], 1):
                             st.write(f"{i}. {item}")
                 else:
-                    st.info("AI sponsorship analysis has not been generated for this company yet.")
+                    st.info("Sponsorship analysis is being expanded for this company.")
 
             with tab3:
                 if selected["score"] is not None:
-                    labels = {"philanthropy": "Philanthropy & community giving", "stem_education": "STEM / education alignment", "recruiting_talent": "Recruiting / student talent", "past_sponsorships": "Previous sponsorship behavior", "industry_fit": "Industry relevance to SHPE", "local_presence": "Local presence", "financial_capacity": "Financial capacity", "proximity": "Geographic proximity", "university_engagement": "University engagement", "dei_shpe_alignment": "DEI / SHPE alignment", "evidence_quality": "Evidence quality"}
+                    labels = {
+                        "philanthropy": "Philanthropy & community giving",
+                        "stem_education": "STEM / education alignment",
+                        "recruiting_talent": "Recruiting / student talent",
+                        "past_sponsorships": "Previous sponsorship behavior",
+                        "industry_fit": "Industry relevance to SHPE",
+                        "local_presence": "Local presence",
+                        "financial_capacity": "Financial capacity",
+                        "proximity": "Geographic proximity",
+                        "university_engagement": "University engagement",
+                        "dei_shpe_alignment": "DEI / SHPE alignment",
+                        "evidence_quality": "Evidence quality",
+                    }
                     for key, weight in WEIGHTS.items():
                         value = selected["parts"][key]
-                        st.markdown(f"""<div class="metric-row"><div class="metric-top"><b>{labels[key]}</b><span>{value}/100 · {round(weight*100)}%</span></div><div class="track"><div class="fill" style="width:{value}%"></div></div></div>""", unsafe_allow_html=True)
+                        st.markdown(
+                            f"""<div class="metric-row"><div class="metric-top"><b>{labels[key]}</b>
+                            <span>{value}/100 · {round(weight*100)}%</span></div>
+                            <div class="track"><div class="fill" style="width:{value}%"></div></div></div>""",
+                            unsafe_allow_html=True
+                        )
                 else:
-                    st.info("Detailed sponsorship metrics are pending enrichment.")
+                    st.info("Detailed sponsorship metrics are not yet available for this company.")
 
                 evidence = display_evidence(record)
                 if evidence:
@@ -352,12 +423,27 @@ if page == "Discovery":
                     for item in evidence:
                         st.link_button(item["title"], item["url"], use_container_width=True)
                 elif profile:
-                    st.link_button("Public Chamber listing", profile, use_container_width=True)
+                    st.link_button("View Chamber listing", profile, use_container_width=True)
 
 elif page == "Scoring model":
     st.subheader("Scoring model")
-    labels = {"philanthropy": "Philanthropy & community giving", "stem_education": "STEM / education alignment", "recruiting_talent": "Recruiting / talent alignment", "past_sponsorships": "Previous sponsorship behavior", "industry_fit": "Industry relevance to SHPE", "local_presence": "Local presence", "financial_capacity": "Financial capacity", "proximity": "Geographic proximity", "university_engagement": "University engagement", "dei_shpe_alignment": "DEI / SHPE alignment", "evidence_quality": "Evidence quality / recency"}
-    st.dataframe(pd.DataFrame([{"Metric": labels[k], "Weight": f"{int(v*100)}%"} for k, v in WEIGHTS.items()]), use_container_width=True, hide_index=True)
+    labels = {
+        "philanthropy": "Philanthropy & community giving",
+        "stem_education": "STEM / education alignment",
+        "recruiting_talent": "Recruiting / talent alignment",
+        "past_sponsorships": "Previous sponsorship behavior",
+        "industry_fit": "Industry relevance to SHPE",
+        "local_presence": "Local presence",
+        "financial_capacity": "Financial capacity",
+        "proximity": "Geographic proximity",
+        "university_engagement": "University engagement",
+        "dei_shpe_alignment": "DEI / SHPE alignment",
+        "evidence_quality": "Evidence quality / recency",
+    }
+    st.dataframe(
+        pd.DataFrame([{"Metric": labels[k], "Weight": f"{int(v*100)}%"} for k, v in WEIGHTS.items()]),
+        use_container_width=True, hide_index=True
+    )
 
 elif page == "Evidence sources":
     st.subheader("Evidence sources")
@@ -369,8 +455,13 @@ elif page == "Evidence sources":
         url = relation.get("source_url", "")
         if is_public_url(url):
             records.append({"Organization": name, "Source": relation.get("relationship", "SHPE National relationship"), "URL": url})
-    st.dataframe(pd.DataFrame(records), use_container_width=True, hide_index=True, column_config={"URL": st.column_config.LinkColumn("URL")})
+    st.dataframe(
+        pd.DataFrame(records),
+        use_container_width=True,
+        hide_index=True,
+        column_config={"URL": st.column_config.LinkColumn("URL")}
+    )
 
 else:
     st.subheader("About")
-    st.write("SHPE Funding Discovery combines local business discovery, sponsorship scoring, AI-assisted analysis, and public source verification.")
+    st.write("SHPE Funding Discovery helps chapters find nearby organizations, compare sponsorship potential, and reach public company contact channels.")
