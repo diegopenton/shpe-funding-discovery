@@ -9,17 +9,63 @@ import streamlit as st
 from src.config import CENTERS, RADII
 from src.scoring import calculate, WEIGHTS, haversine_miles
 
-st.set_page_config(page_title="SHPE Funding Discovery", page_icon="◆", layout="wide")
+st.set_page_config(
+    page_title="SHPE Funding Discovery",
+    page_icon="◆",
+    layout="wide",
+    initial_sidebar_state="auto",
+)
 
 st.markdown("""
 <style>
 :root{--navy:#0b1f3a;--blue:#0067b9;--muted:#6b7b8f;--line:#e3e9f0;--bg:#f6f8fb}
+*{box-sizing:border-box}
+html,body,[data-testid="stAppViewContainer"]{overflow-x:hidden}
 .stApp{background:var(--bg)}
 .block-container{max-width:1500px;padding-top:1.1rem;padding-bottom:2rem}
-[data-testid="stSidebar"]{background:var(--navy)}
+
+/* Collapsible SHPE navigation drawer */
+[data-testid="stSidebar"]{
+    background:var(--navy);
+    transition:transform .22s ease,width .22s ease;
+}
 [data-testid="stSidebar"] *{color:#eef5fb!important}
+[data-testid="stSidebarCollapseButton"] button,
+[data-testid="stSidebarCollapsedControl"] button{
+    background:var(--navy)!important;
+    color:white!important;
+    border:1px solid rgba(255,255,255,.28)!important;
+    border-radius:999px!important;
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    box-shadow:0 3px 12px rgba(11,31,58,.18)!important;
+}
+[data-testid="stSidebarCollapseButton"] button svg,
+[data-testid="stSidebarCollapsedControl"] button svg{display:none!important}
+[data-testid="stSidebarCollapseButton"] button::after{
+    content:"‹";
+    color:white;
+    font-size:30px;
+    line-height:1;
+    transform:translateY(-1px);
+}
+[data-testid="stSidebarCollapsedControl"] button::after{
+    content:"›";
+    color:white;
+    font-size:30px;
+    line-height:1;
+    transform:translateY(-1px);
+}
+[data-testid="stSidebarCollapsedControl"]{z-index:999999!important}
+
 .hero{background:linear-gradient(120deg,#0b1f3a,#123b65);padding:22px 26px;border-radius:18px;color:white;margin-bottom:16px}
 .hero h1{color:white!important;margin:0}
+.hero p{margin:.35rem 0 0}
 .card{background:white;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:10px}
 .name{font-size:1.2rem;font-weight:750;color:var(--navy)}
 .muted,.small{color:var(--muted);font-size:.84rem}
@@ -27,7 +73,7 @@ st.markdown("""
 .badge.green{background:#eaf6f1;color:#177d62}
 .badge.gray{background:#eef1f4;color:#5d6874}
 .metric-row{margin:11px 0}
-.metric-top{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:5px}
+.metric-top{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;margin-bottom:5px}
 .track{height:8px;background:#edf1f5;border-radius:999px;overflow:hidden}
 .fill{height:8px;background:var(--blue);border-radius:999px}
 .status-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:12px;margin:8px 0 12px}
@@ -38,7 +84,55 @@ st.markdown("""
 .status-sub{font-size:.76rem;color:var(--muted);margin-top:5px}
 div[data-testid="stMetric"]{background:white;border:1px solid var(--line);padding:14px;border-radius:14px}
 .stButton>button,.stLinkButton>a{border-radius:10px!important;font-weight:650!important}
-@media(max-width:700px){.status-grid{grid-template-columns:1fr}.status-value{font-size:1.35rem}}
+
+/* Phone layout */
+@media(max-width:768px){
+    .block-container{max-width:100%;padding:.65rem .72rem 1.5rem!important}
+    .hero{padding:16px 17px;border-radius:14px;margin-bottom:12px}
+    .hero h1{font-size:1.55rem!important;line-height:1.15!important}
+    .hero p{font-size:.88rem!important;line-height:1.35!important}
+    .hero>div{font-size:.62rem!important}
+
+    /* Stack Streamlit columns rather than squeezing desktop panels */
+    div[data-testid="stHorizontalBlock"]{flex-wrap:wrap!important;gap:.65rem!important}
+    div[data-testid="stHorizontalBlock"]>div[data-testid="stColumn"]{
+        flex:1 1 100%!important;
+        width:100%!important;
+        min-width:0!important;
+    }
+
+    .status-grid{grid-template-columns:1fr 1fr;gap:8px}
+    .status-card{min-height:80px;padding:12px}
+    .status-value{font-size:1.28rem}
+    .status-value.assessment{font-size:.92rem}
+    .card{padding:14px}
+    .name{font-size:1.08rem}
+    .muted,.small{font-size:.78rem}
+    div[data-testid="stMetric"]{padding:11px!important}
+    div[data-testid="stMetricValue"]{font-size:1.35rem!important}
+    div[data-testid="stMetricLabel"]{font-size:.76rem!important}
+
+    /* Make tabs usable with a thumb on narrow screens */
+    div[data-baseweb="tab-list"]{overflow-x:auto!important;flex-wrap:nowrap!important;scrollbar-width:none}
+    div[data-baseweb="tab-list"]::-webkit-scrollbar{display:none}
+    button[data-baseweb="tab"]{white-space:nowrap!important;font-size:.82rem!important;padding-left:.65rem!important;padding-right:.65rem!important}
+
+    /* Keep tables and maps inside the phone viewport */
+    [data-testid="stDataFrame"], [data-testid="stDeckGlJsonChart"]{max-width:100%!important;overflow:hidden!important}
+    .stButton>button,.stLinkButton>a{min-height:42px!important}
+
+    /* Mobile drawer arrow stays easy to reach */
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapsedControl"] button{
+        width:42px!important;height:42px!important;min-width:42px!important
+    }
+    [data-testid="stSidebarCollapsedControl"]{top:.45rem!important;left:.35rem!important}
+}
+
+@media(max-width:430px){
+    .status-grid{grid-template-columns:1fr}
+    .hero h1{font-size:1.4rem!important}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -151,6 +245,11 @@ def description_for(row):
 def display_evidence(record):
     return [item for item in public_evidence.get(record.get("company",""),[]) if is_public_url(item.get("url",""))]
 
+def sync_company_picker():
+    picked=st.session_state.get("company_picker")
+    if picked:
+        st.session_state.selected_company=picked
+
 with st.sidebar:
     st.markdown("### ◆ SHPE")
     st.caption("FUNDING DISCOVERY")
@@ -179,8 +278,15 @@ if page=="Discovery":
     m1,m2,m3,m4=st.columns(4)
     m1.metric("Companies",len(rows)); m2.metric("Analyzed",len(analyzed)); m3.metric("Local directory",len(local)); m4.metric("AI assessments",sum(bool(r["record"].get("ai_analysis")) for r in rows))
 
-    if rows and st.session_state.get("selected_company") not in [r["company"] for r in rows]:
+    names=[r["company"] for r in rows]
+    if rows and st.session_state.get("selected_company") not in names:
         st.session_state.selected_company=rows[0]["company"]
+    if rows and st.session_state.get("company_picker") not in names:
+        st.session_state.company_picker=st.session_state.selected_company
+
+    if rows:
+        st.selectbox("Open company",names,key="company_picker",on_change=sync_company_picker)
+
     selected=next((r for r in rows if r["company"]==st.session_state.get("selected_company")),rows[0] if rows else None)
 
     left,right=st.columns([1.45,1],gap="large")
@@ -190,23 +296,7 @@ if page=="Discovery":
             map_df=pd.DataFrame([{"lat":r["lat"],"lon":r["lon"],"company":r["company"],"score":r["record"].get("ai_analysis",{}).get("ai_score",r["score"] if r["score"] is not None else "—")} for r in rows])
             layer=pdk.Layer("ScatterplotLayer",map_df,get_position="[lon,lat]",get_radius=3,radius_units="pixels",radius_scale=1,radius_min_pixels=2,radius_max_pixels=3,get_fill_color=[0,103,185,190],pickable=True,auto_highlight=True,stroked=True,get_line_color=[255,255,255,160],line_width_min_pixels=.5)
             state=pdk.ViewState(latitude=center["lat"],longitude=center["lon"],zoom=9 if radius==25 else 10.4)
-            st.pydeck_chart(pdk.Deck(layers=[layer],initial_view_state=state,tooltip={"text":"{company}\nScore: {score}"}),use_container_width=True,height=430)
-
-        st.markdown("#### Companies")
-        if rows:
-            list_df=pd.DataFrame([{
-                "Company":r["company"],"Miles":r["distance"],
-                "Score":r["record"].get("ai_analysis",{}).get("ai_score",r["score"] if r["score"] is not None else None),
-                "Website":company_website(r["record"]),
-                "SHPE Sponsor":"Verified" if sponsor_relationship(r["company"]) else "Not verified"
-            } for r in rows])
-            event=st.dataframe(
-                list_df,use_container_width=True,hide_index=True,height=330,selection_mode="single-row",on_select="rerun",
-                column_config={"Miles":st.column_config.NumberColumn("Miles",format="%.1f"),"Score":st.column_config.NumberColumn("Score",format="%d"),"Website":st.column_config.LinkColumn("Website",display_text="Open")}
-            )
-            if event.selection.rows:
-                st.session_state.selected_company=list_df.iloc[event.selection.rows[0]]["Company"]
-                selected=next((r for r in rows if r["company"]==st.session_state.selected_company),selected)
+            st.pydeck_chart(pdk.Deck(layers=[layer],initial_view_state=state,tooltip={"text":"{company}\nScore: {score}"}),use_container_width=True,height=390)
 
     with right:
         st.subheader("Company profile")
@@ -230,7 +320,7 @@ if page=="Discovery":
 
             mini_df=pd.DataFrame([{"lat":selected["lat"],"lon":selected["lon"],"company":selected["company"]}])
             mini_layer=pdk.Layer("ScatterplotLayer",mini_df,get_position="[lon,lat]",get_radius=4,radius_units="pixels",radius_min_pixels=3,radius_max_pixels=4,get_fill_color=[0,103,185,210],pickable=True)
-            st.pydeck_chart(pdk.Deck(layers=[mini_layer],initial_view_state=pdk.ViewState(latitude=selected["lat"],longitude=selected["lon"],zoom=13),tooltip={"text":"{company}"}),use_container_width=True,height=185)
+            st.pydeck_chart(pdk.Deck(layers=[mini_layer],initial_view_state=pdk.ViewState(latitude=selected["lat"],longitude=selected["lon"],zoom=13),tooltip={"text":"{company}"}),use_container_width=True,height=170)
 
             tab1,tab2,tab3=st.tabs(["Overview","AI Analysis","Metrics & Evidence"])
             with tab1:
@@ -295,6 +385,23 @@ if page=="Discovery":
                     for item in evidence: st.link_button(item["title"],item["url"],use_container_width=True)
                 elif profile:
                     st.link_button("View Chamber listing",profile,use_container_width=True)
+
+    st.markdown("#### Companies")
+    if rows:
+        list_df=pd.DataFrame([{
+            "Company":r["company"],"Miles":r["distance"],
+            "Score":r["record"].get("ai_analysis",{}).get("ai_score",r["score"] if r["score"] is not None else None),
+            "Website":company_website(r["record"]),
+            "SHPE Sponsor":"Verified" if sponsor_relationship(r["company"]) else "Not verified"
+        } for r in rows])
+        event=st.dataframe(
+            list_df,use_container_width=True,hide_index=True,height=330,selection_mode="single-row",on_select="rerun",
+            column_config={"Miles":st.column_config.NumberColumn("Miles",format="%.1f"),"Score":st.column_config.NumberColumn("Score",format="%d"),"Website":st.column_config.LinkColumn("Website",display_text="Open")}
+        )
+        if event.selection.rows:
+            picked=list_df.iloc[event.selection.rows[0]]["Company"]
+            st.session_state.selected_company=picked
+            st.session_state.company_picker=picked
 
 elif page=="Scoring model":
     st.subheader("Scoring model")
